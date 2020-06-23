@@ -112,7 +112,9 @@ abstract class ConnectivityReceiver {
         WritableMap event = Arguments.createMap();
 
         // Add if WiFi is ON or OFF
+        System.out.println("createConnectivityEventMap : Checking isAccessWifiStatePermissionGranted");
         if (NetInfoUtils.isAccessWifiStatePermissionGranted(getReactContext())) {
+            System.out.println("createConnectivityEventMap : ACCESS_WIFI_STATE Permission Granted");
             boolean isEnabled = mWifiManager.isWifiEnabled();
             event.putBoolean("isWifiEnabled", isEnabled);
         }
@@ -160,7 +162,9 @@ abstract class ConnectivityReceiver {
                 }
                 break;
             case "wifi":
+                System.out.println("createDetailsMap : case \"wifi\" isAccessWifiStatePermissionGranted");
                 if (NetInfoUtils.isAccessWifiStatePermissionGranted(getReactContext())) {
+                    System.out.println("createDetailsMap : ACCESS_WIFI_STATE Permission Granted");
                     WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
                     if (wifiInfo != null) {
                         // Get the SSID
